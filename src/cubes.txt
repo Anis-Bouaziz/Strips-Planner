@@ -1,0 +1,23 @@
+init:  ONTABLE(A) , ONTABLE(B) , CLEAR(A) , CLEAR(B) , HANDEMPTY
+goal: HOLDING(A)
+actions:
+               // pickup cube
+               PICKUP(X)
+               PRE:  ONTABLE(X), CLEAR(X) , HANDEMPTY
+               ADD: HOLDING(X)
+               DEL: ONTABLE(X), CLEAR(X) , HANDEMPTY
+               // putdown cube
+               PUTDOWN(X)
+               PRE:  HOLDING(X)
+               ADD: ONTABLE(X), CLEAR(X) , HANDEMPTY
+               DEL: HOLDING(X)
+               // stack
+               STACK(X,Y)
+               PRE: HOLDING(X) , CLEAR(Y)
+               ADD: HANDEMPTY , ON(X,Y) , CLEAR(X)
+               DEL: HOLDING(X) , CLEAR(Y)
+               // unstack
+               UNSTACK(X,Y)
+               PRE:  HANDEMPTY , ON(X,Y) , CLEAR(X)
+               ADD: HOLDING(X), CLEAR(Y)
+               DEL: HANDEMPTY , ON(X,Y) , CLEAR(X)
