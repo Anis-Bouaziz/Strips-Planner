@@ -1,12 +1,9 @@
 package strips;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
+
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Condition {
 
@@ -51,27 +48,23 @@ public class Condition {
 
 	}
 
-	public Condition generateActualCondition(Action a ,Map<String,String> m) {
+	public Condition generateActualCondition(Action a, Map<String, String> m) {
 		args = new ArrayList<String>();
 
-		
-		for (String p:this.params) { 
-			if(a.params.contains(p))
-			args.add(m.get(p));
-			else args.add(p);
-			}
+		for (String p : this.params) {
+			if (a.params.contains(p))
+				args.add(m.get(p));
+			else
+				args.add(p);
+		}
 		return new Condition(this.name, args);
 
 	}
 
 	@Override
 	public String toString() {
-		String res = "Condition [name=" + name + ", literals=";
-		if (params != null)
-			for (String s : params) {
-				res = res + s;
-			}
-		res = res + "]";
+		String res = "Condition [NAME=" + name + ", LITERALS=" + params.toString();
+
 		return res;
 	}
 

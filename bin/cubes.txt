@@ -1,5 +1,5 @@
-init:  ONTABLE(A) , ONTABLE(B) , CLEAR(A) , CLEAR(B) , HANDEMPTY
-goal: HOLDING(A)
+init:  ON(A,B) , ONTABLE(B) , CLEAR(A) , HANDEMPTY
+goal: CLEAR(B)
 actions:
                // pickup cube
                PICKUP(X)

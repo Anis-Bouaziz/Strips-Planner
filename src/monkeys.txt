@@ -1,0 +1,28 @@
+init:  BananasAt(B), At(A), Level(low), BoxAt(C)
+goal: Have(Bananas)
+actions:
+               // move from X to Y
+               MOVE(X,Y)
+               PRE:  At(X), Level(low)
+               ADD: At(Y)
+               DEL: At(X)
+               // climb up on the box
+               ClimbUp(Location)
+               PRE:  At(Location), BoxAt(Location), Level(low)
+               ADD: Level(high)
+               DEL: Level(low)
+               // climb down from the box
+               ClimbDown(Location)
+               PRE: At(Location), BoxAt(Location), Level(high)
+               ADD: Level(low)
+               DEL: Level(high)
+               // move monkey and box from X to Y
+               MoveBox(X,Y)
+               PRE:  At(X), BoxAt(X), Level(low)
+               ADD: BoxAt(Y), At(Y)
+               DEL: BoxAt(X), At(X)
+               // take the bananas
+               TakeBananas(Location)
+               PRE:  BananasAt(Location), At(Location), Level(high)
+               ADD: Have(Bananas)
+               DEL: BananasAt(Location)
